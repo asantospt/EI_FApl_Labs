@@ -1,0 +1,24 @@
+/**
+ * @ex -
+ * @brief -
+ * @date -
+ * @author -
+ * @state -
+ */
+
+/** 
+ * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * 5V -> USB
+ * GND -> breadboard
+ * Pin A0 -> QRE1113 
+ * Pin 1 -> LED verde 
+ * 
+ * -> Sensor infravermelhos 'QRE1113'
+ *  1 -> R=130 Ohm
+ *  2 -> GND
+ *  3 -> Vout: Pin A0(Arduino) + R=10 kOhm
+ *  4 -> GND
+ */
+
+ 
+ 
