@@ -1,0 +1,29 @@
+/**
+ * @ex - Mod.3b - RP1-a
+ * @brief - ler V_out do sensor QRE1113 (proximidade)
+ * @date - 
+ * @author - Afonso & Natanael
+ * @state - inc
+ */
+
+/** 
+ * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * 5V -> USB
+ * GND -> breadboard 
+ * A0 -> sensor QRE1113
+ * ? -> R. 22K
+ */
+
+const int PIN_QRE = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(PIN_QRE);
+
+  float voltage = sensorValue * (5.0 / 1023.0);
+  
+  Serial.println(voltage);
+}
