@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3a - RP3-b
  * @brief - ler luminosidade com 1 LDR
- * @date -
- * @author - 
- * @state - TESTAR
+ * @date - 29/11
+ * @author - Afonso & Natanael
+ * @state - OK
  */
 
 /** 

@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3a - RP2
  * @brief - atuar 1 LED com 1 botão
- * @date -
- * @author - 
- * @state - TESTAR
+ * @date - 29/11
+ * @author - Afonso & Natanael
+ * @state - OK
  */
 
 /** 
@@ -40,4 +40,3 @@ void loop() {
     digitalWrite(ledPin, LOW);
   }
 }
-

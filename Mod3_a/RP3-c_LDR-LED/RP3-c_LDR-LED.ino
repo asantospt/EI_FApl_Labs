@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3a - RP3-c
  * @brief - ler luminosidade com 1 LDR; atuar 1 LED
- * @date -
- * @author - 
- * @state - TESTAR
+ * @date - 29/11
+ * @author - Afonso & Natanael
+ * @state - OK
  */
 
 /** 
@@ -26,10 +26,16 @@ void loop() {
   
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   float voltage = sensorValue * (5.0 / 1023.0);
+  //Serial.println(voltage);
 
-  Serial.println(voltage);
-
-
-  // TODO ligar LED qd luminosidade < valor médio
-  
+  // valor max. lido (a descoberto) = 4.50
+  // valor min. lido (tapado) = 2.00
+  if (voltage >= 3.25) {      // valor méd. calculado
+    digitalWrite(LED_BUILTIN, LOW);  
+    Serial.println("MUITA LUZ!"); 
+  }
+  else {
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.println("POUCA LUZ! LED ON");
+  }
 }

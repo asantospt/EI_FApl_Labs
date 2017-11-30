@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3a - RP1
  * @brief - piscar 1 LED
- * @date -
- * @author - 
- * @state - TESTAR
+ * @date - 29/11
+ * @author - Afonso & Natanael
+ * @state - OK
  */
 
 /** 
