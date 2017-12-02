@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3b - RP1-a
- * @brief - ler V_out do sensor QRE1113 (proximidade)
+ * @brief - ler V_out do QRE
  * @date - 
  * @author - Afonso & Natanael
- * @state - inc
+ * @state - testar
  */
 
 /** 
@@ -11,7 +11,7 @@
  * 5V -> USB
  * GND -> breadboard 
  * A0 -> sensor QRE1113
- * ? -> R. 22K
+ * ? -> R. 22 KOhm
  */
 
 const int PIN_QRE = A0;
@@ -26,4 +26,7 @@ void loop() {
   float voltage = sensorValue * (5.0 / 1023.0);
   
   Serial.println(voltage);
+ 
 }
+
+
