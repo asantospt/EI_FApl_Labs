@@ -46,7 +46,10 @@ void loop() {
   Serial.println(" microssegundos");
 
   // Cálculo da distância em cm
-  distance = (((float)duration * (float)VEL_ULTRASSONS_AR) / 2.0) / 10000.0;
+  float distance = (((float)duration * (float)VEL_ULTRASSONS_AR) / 2.0) / 10000.0;
+  //Solução Natanael
+  //float distance = ((float)duration / 58.31);
+  //float distance = ((float)duration * 0,0172);
   Serial.print(distance); 
   Serial.println(" cm");
   delay(1000);
