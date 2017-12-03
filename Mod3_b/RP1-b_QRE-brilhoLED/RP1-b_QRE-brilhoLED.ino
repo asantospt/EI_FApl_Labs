@@ -38,8 +38,12 @@ void loop() {
 
   // 20% do brilho msx. do LED
   if (voltage < 2.50) {
-    analogWrite(PIN_LED_VERD, 255 * 0.2);   
+    analogWrite(PIN_LED_VERD, 255 * 0.2); 
+    //analogWrite(PIN_LED_VERD, 51);
     delay(500);   
+  } else {
+    analogWrite(PIN_LED_VERD, 255);
+    delay(500);
   }  
 }
 
