@@ -6,17 +6,17 @@
  * @state - inc
  */
 
-/* 
-* LIGAÇÕES: --> Arduino 'Mega 2560'
+/** 
+* LIGAÇÕES: @Arduino 'Mega 2560'
 * 5V -> USB
 * GND -> breadboard
 * A0 -> Sensor ultrassons
 * 
-* --> Sensor ultrassons 'HC-SR04'
-* VCC -> 5V (Arduino)
-* GND -> GND (Arduino)
-* Trig -> Pin 3 (Arduino)
-* Echo -> Pin 4 (Arduino)
+* @Sensor ultrassons 'HC-SR04'
+* VCC -> 5V
+* GND -> GND 
+* Trig -> Arduino, Pin 3
+* Echo -> Arduino, Pin 4
 */
 
 const int PIN_TRIG = 3;

@@ -7,11 +7,16 @@
  */
 
 /** 
- * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * LIGAÇÕES: @Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
  * A0 -> sensor QRE1113
- * ? -> R. 22 KOhm
+ * 
+ * @Sensor de reflexão/proximidade 'QRE1113'
+ * 1 -> 5V + R1
+ * 2 -> GND
+ * 3 -> V_out
+ * 4 -> GND
  */
 
 const int PIN_QRE = A0;

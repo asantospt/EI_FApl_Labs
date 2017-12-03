@@ -6,18 +6,28 @@
  * @state - inc
  */
 
-/* 
-* LIGAÇÕES: --> Arduino 'Mega 2560'
+/** 
+* LIGAÇÕES: @Arduino 'Mega 2560'
 * 5V -> USB
 * GND -> breadboard
 * A0 -> Sensor ultrassons
+* Pin 12 -> 
 * 
-* --> Sensor ultrassons 'HC-SR04'
-* VCC -> 5V (Arduino)
-* GND -> GND (Arduino)
-* Trig -> Pin 3 (Arduino)
-* Echo -> Pin 4 (Arduino)
-* ? MOSFET -> Pin -
+* @Sensor ultrassons 'HC-SR04'
+* VCC -> 5V
+* GND -> GND 
+* Trig -> Arduino, Pin 3
+* Echo -> Arduino, Pin 4
+
+* @MOSFET 'BS170'
+* 1/DRAIN -> fio preto ventoinha
+* 2/GATE -> Arduino, Pin 12
+* 3/SOURCE -> 0V
+*
+* @ventoinha
+* fio preto/GND -> DRAIN MOSFET
+* fio vermelho/12V -> fonte externa
+* fio amarelo/RPM -> (não ligar)
 */
 
 const int PIN_TRIG = 3;
