@@ -10,7 +10,7 @@
  * LIGAÇÕES: -> Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
- * Pin 2 -> R. 10K
+ * Pin 2 -> botão + R. 10 kOhm
  */
 
 // constants won't change. They're used here to set pin numbers:

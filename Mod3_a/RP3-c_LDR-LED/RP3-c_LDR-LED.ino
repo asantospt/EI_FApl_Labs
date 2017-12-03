@@ -7,12 +7,15 @@
  */
 
 /** 
- * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * LIGAÇÕES: --Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
- * A0 -> LDR
- * ? -> R. 22K
- * Pin 13 -> LED interno
+ * A0 -> LDR + (A0) + R. 22 kOhm
+ * (Pin 13 -> LED_BUILTIN)
+ * 
+ * --LDR
+ * + -> 5V
+ * - -> V_out, Arduino/Pin A0
  */
 
 void setup() {

@@ -7,11 +7,14 @@
  */
 
 /** 
- * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * LIGAÇÕES: --Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
- * A0 -> LDR
- * ? -> R. 22K
+ * A0 -> LDR + (A0) + R. 22 kOhm
+ * 
+ * --LDR
+ * + -> 5V
+ * - -> Vout, Arduino/Pin A0
  */
 
 // the setup routine runs once when you press reset:

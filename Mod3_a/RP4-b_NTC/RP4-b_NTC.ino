@@ -7,11 +7,14 @@
  */
 
 /** 
- * LIGAÇÕES: -> Arduino 'Mega 2560'
+ * LIGAÇÕES: @Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
- * A0 -> NTC
- * ? -> R. 2.7K
+ * A0 -> NTC + (A0) + R. 2.7 kOhm
+ * 
+ * @NTC
+ * + -> 5V
+ * - -> V_out, Arduino/Pin A0
  */
 
 const int PIN_NTC = A0;
