@@ -3,7 +3,7 @@
  * @brief - ? MOSFET
  * @date - 02/12
  * @author - Afonso & Natanael
- * @state - inc
+ * @state - não foi montado na aula PL (nem a e.)
  */
 
 /** 

@@ -1,9 +1,9 @@
 /**
  * @ex - Mod.3b - RP2-c
  * @brief - Calc. distância para 1 objecto
- * @date - 02/12
+ * @date - 06/12
  * @author - Afonso & Natanael
- * @state - testar
+ * @state - OK
  */
 
 /** 
@@ -46,9 +46,10 @@ void loop() {
   Serial.println(" microssegundos");
 
   // Cálculo da distância em cm
-  float distance = (((float)duration * (float)VEL_ULTRASSONS_AR) / 2.0) / 10000.0;
+  // float distance = (((float)duration * (float)VEL_ULTRASSONS_AR) / 2.0) / 10000.0;
+  
   //Solução Natanael
-  //float distance = ((float)duration / 58.31);
+  float distance = ((float)duration / 58.31);
   //float distance = ((float)duration * 0,0172);
   Serial.print(distance); 
   Serial.println(" cm");
