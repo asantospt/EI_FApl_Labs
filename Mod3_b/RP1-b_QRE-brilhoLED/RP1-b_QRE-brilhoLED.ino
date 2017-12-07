@@ -11,7 +11,7 @@
  * LIGAÇÕES: @Arduino 'Mega 2560'
  * 5V -> USB
  * GND -> breadboard 
- * A0 -> sensor QRE1113
+ * A0 -> sensor QRE1113, Pin 3
  * 
  * @Sensor de reflexão/proximidade 'QRE1113'
  * 1 -> 5V + R1 (130 kOhm)

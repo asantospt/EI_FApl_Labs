@@ -10,7 +10,8 @@
   * LIGAÇÕES: @Arduino 'Mega 2560'
   * 5V -> USB
   * GND -> breadboard
-  * A0 -> Sensor ultrassons
+  * Pin 3 -> Sensor ultrassons, Trig
+  * Pin 4 -> Sensor ultrassons, Echo
   * 
   * @Sensor ultrassons 'HC-SR04'
   * VCC -> 5V

@@ -1,45 +1,62 @@
 /**
  * @ex - Mod.3b - RP3-c
- * @brief - Servo e Buzzer
- * @date - 03/12
+ * @brief - Servo + Buzzer
+ * @date - 06/12
  * @author - Afonso & Natanael
- * @state - inc
- */
+ * @state - OK
 
- /* 
 * LIGAÇÕES: --> Arduino 'Mega 2560'
 * 5V -> USB
 * GND -> breadboard
-* A0 -> Sensor ultrassons
+* Pin 9 -> Servo, Laranja (Sinal)
 * 
-* --> Servo
-* --> Buzzer + R. 10 kOhm
+* @Servo
+* Laranja (Sinal) -> Arduino, Pin 9
+* Vermelho (+) -> VCC
+* Castanho (-) -> GND
+* 
+* @Buzzer 
+* + -> Arduino, Pin 9 + R. 10 kOhm
+* - -> GND
 */
 
 #include <Servo.h>
 
-Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
-
+Servo myservo;  
 const int PIN_SERVO = 9; 
+const int MAX_ANG_SERVO = 170;
 const int MIN_ANG_SERVO = 10; 
-const int MAX_ANG_SERVO = 170; 
-
-int pos = 0;    // variable to store the servo position
+const int PIN_BUZZER = 8;
+int pos = 0;   
 
 void setup() {
-  myservo.attach(PIN_SERVO);  // attaches the servo on pin 9 to the servo object
+  Serial.begin (9600);
+  myservo.attach(PIN_SERVO);  
+  pinMode(PIN_BUZZER, OUTPUT);
 }
 
 void loop() {
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+  for (pos = MIN_ANG_SERVO; pos <= MAX_ANG_SERVO; pos += 1) { 
     // in steps of 1 degree
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
+    myservo.write(pos);              
+    Serial.println(pos); 
+    delay(15);                      
+
+    if (pos == MAX_ANG_SERVO) {
+      tone(PIN_BUZZER, 880, 1000);
+      delay(1000);
+      noTone(PIN_BUZZER);                    
+      delay(500);    
+    }
   }
-  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
+  for (pos = MAX_ANG_SERVO; pos >= MIN_ANG_SERVO; pos -= 1) { 
+    myservo.write(pos);             
+    Serial.println(pos); 
+    delay(15);                     
+  
+    if (pos == MIN_ANG_SERVO) {
+      tone(PIN_BUZZER, 440, 1000);
+      delay(1000);    
+    }
   }
 }
-
