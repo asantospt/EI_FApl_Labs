@@ -64,16 +64,23 @@ const float QRE_DETECAO = 990.0;         // TODO: test leituras.   Valor médio 
 const int ALTURA_MAX_VEIC = 30;          // distância do sensor ao topo do veículo
 const int GRAUS_CANCELA_FECHADA = 5;
 const int GRAUS_CANCELA_ABERTA = 95;
+const int TEMP_CANCELA_ABERTA = 2000;
 const int FREQ_BUZZER = 440;
 
 // Declaração de funções
-float lerProximidade();
+void abrirCancela();
+void fecharCancela();
 
 void setup() {
   pinMode(PIN_LED, OUTPUT);
   pinMode(PIN_BUZZER, OUTPUT);
+  pinMode(PIN_UL_TRIG, OUTPUT);
+  pinMode(PIN_ECPIN_UL_ECHOHO, INPUT);
   myservo.attach(PIN_SERVO);  
   Serial.begin (9600);
+
+  digitalWrite(PIN_UL_TRIG, LOW);
+  delayMicroseconds(2);
 }
 
 void loop() {
@@ -135,7 +142,23 @@ float lerProximidade() {
  * @return 
  */
 void lerDistanciaVeiculo() {  
+  long duration = 0;
+  float distance = 0.0;
   
+  digitalWrite(PIN_UL_TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PIN_UL_TRIG, LOW);
+  
+  duration = pulseIn(PIN_UL_ECHO, HIGH);
+  Serial.print("ULTRASSONS - duração: ");
+  Serial.print(duration); 
+  Serial.println(" microssegundos");
+
+  distance = ((float)duration / 58.31);
+  Serial.print("ULTRASSONS - distância: ");
+  Serial.print(distance); 
+  Serial.println(" cm");
+  delay(1000);
 }
 
 /**
@@ -143,25 +166,37 @@ void lerDistanciaVeiculo() {
  * @params 
  * @return 
  */
-void controlarCancela() {  
-  
-  // abrir cancela
-
-  // fechar cancela
+void abrirCancela() {  
+  myservo.write(GRAUS_CANCELA_ABERTA);              
+  Serial.println(pos); 
+    //delay(15);                       // waits 15ms for the servo to reach the position
+  delay(TEMP_CANCELA_ABERTA);
 }
 
 /**
  * @descr 
  * @params 
  * @return 
+ */
+void fecharCancela() {  
+  myservo.write(GRAUS_CANCELA_FECHADA);              
+  Serial.println(pos); 
+  delay(15);                       // waits 15ms for the servo to reach the position
+}
+
+/**
+ * @descr Ligar o Buzzer quando o veículo não poder entrar
+ * @params {nada}
+ * @return {nada}
  */
 void atuarBuzzer() {  
   // ligar buzzer
   tone(PIN_BUZZER, FREQ_BUZZER, 1000);
-  
+  Serial.println("BUZZER: Altura do veículo é superior ao permitido"); 
+  delay(2000);
+
   // desligar buzzer
   noTone(PIN_BUZZER);                    
   delay(1000);
 }
-
 
