@@ -1,7 +1,7 @@
 /**
  * @ex - Mod.3b - RP4
  * @brief - Controlo da cancela de um parque de estacionamento
- * @date - 09/12
+ * @date - 10/12
  * @author - Afonso & Natanael
  * @state - INC
  */
@@ -68,8 +68,13 @@ const int TEMP_CANCELA_ABERTA = 2000;
 const int FREQ_BUZZER = 440;
 
 // Declaração de funções
+void ligarLED_BrilhoMin();
+void ligarLED_BrilhoMax()
+float lerProximidade();
+float lerDistanciaVeiculo();
 void abrirCancela();
 void fecharCancela();
+void atuarBuzzer();
 
 void setup() {
   pinMode(PIN_LED, OUTPUT);
@@ -84,6 +89,8 @@ void setup() {
 }
 
 void loop() {
+  float distVeiculo = 0.0;
+
   /* TODO: funções p/ cada funcionalidade:
    1- acender LED
    2- ler proximidade veículo
@@ -94,8 +101,16 @@ void loop() {
 
   Serial.println("inicio LOOP...");
 
-
-
+  distVeiculo = lerDistanciaVeiculo();
+  // Se veículo for muito alto, não poderá entrar
+  if (distVeiculo <= 30.0) {
+    atuarBuzzer();
+    Serial.println("Altura do veículo é superior ao permitido!"); 
+  }
+  else {
+    // Se poder entrar
+    abrirCancela();
+  }
   Serial.println("fim LOOP...");
 }
 
@@ -104,16 +119,21 @@ void loop() {
  * @params 
  * @return 
  */
-void atuarLED() {  
-  // Quando não é detetado nenhum veículo > LED c/ 10% do brilho 
-  if (voltage < 2.50) { 
-    analogWrite(PIN_LED_VERD, PERC_BRILHO_LED);
-    delay(500);   
-  } else {
-    // Veículo detetado > LED c/ 100% do brilho  
-    analogWrite(PIN_LED_VERD, 255);
-    delay(500);
-  }
+void ligarLED_BrilhoMin() {  
+  // Quando não é detetado nenhum veículo -> LED c/ 10% do brilho 
+  analogWrite(PIN_LED_VERD, PERC_BRILHO_LED);
+  delay(500);   
+}
+
+/**
+ * @descr 
+ * @params 
+ * @return 
+ */
+void ligarLED_BrilhoMax() { 
+  // Veículo detetado -> LED c/ 100% do brilho  
+  analogWrite(PIN_LED_VERD, 255);
+  delay(500);
 }
 
 /**
@@ -123,17 +143,17 @@ void atuarLED() {
  */
 float lerProximidade() {  
   float valorQRE = 0.0;
-  float voltage = 0.0;
+  float voltagem = 0.0;
 
   valorQRE = analogRead(PIN_QRE);
   Serial.print("valor QRE = ");
   Serial.println(valorQRE);
 
-  voltage = valorQRE * (5.0 / 1023.0);
-  Serial.print("voltage QRE = ");
-  Serial.println(voltage);
+  voltagem = valorQRE * (5.0 / 1023.0);
+  Serial.print("voltagem QRE = ");
+  Serial.println(voltagem);
 
-  return voltage;
+  return voltagem;
 }
 
 /**
@@ -141,24 +161,26 @@ float lerProximidade() {
  * @params 
  * @return 
  */
-void lerDistanciaVeiculo() {  
-  long duration = 0;
-  float distance = 0.0;
+float lerDistanciaVeiculo() {  
+  long duracao = 0;
+  float distancia = 0.0;
   
   digitalWrite(PIN_UL_TRIG, HIGH);
   delayMicroseconds(10);
   digitalWrite(PIN_UL_TRIG, LOW);
   
-  duration = pulseIn(PIN_UL_ECHO, HIGH);
+  duracao = pulseIn(PIN_UL_ECHO, HIGH);
   Serial.print("ULTRASSONS - duração: ");
-  Serial.print(duration); 
+  Serial.print(duracao); 
   Serial.println(" microssegundos");
 
-  distance = ((float)duration / 58.31);
+  distancia = ((float)duracao / 58.31);
   Serial.print("ULTRASSONS - distância: ");
-  Serial.print(distance); 
+  Serial.print(distancia); 
   Serial.println(" cm");
   delay(1000);
+
+  return distancia;
 }
 
 /**
@@ -192,11 +214,9 @@ void fecharCancela() {
 void atuarBuzzer() {  
   // ligar buzzer
   tone(PIN_BUZZER, FREQ_BUZZER, 1000);
-  Serial.println("BUZZER: Altura do veículo é superior ao permitido"); 
   delay(2000);
 
   // desligar buzzer
   noTone(PIN_BUZZER);                    
   delay(1000);
 }
-
