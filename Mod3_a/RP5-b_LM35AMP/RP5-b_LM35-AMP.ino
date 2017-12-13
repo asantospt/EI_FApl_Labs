@@ -3,8 +3,8 @@
  * @brief - ler tempª pelo LM35 e usando um AMPOP
  * @date - 29/11; 06/12
  * @author - Afonso & Natanael
- * @state - OK
- *          
+ * @state - TESTAR; Calcs. corretos, mas mostra valores errados
+ *          INC
  */
 
 /** 
@@ -27,12 +27,14 @@
  */
 
  const int PIN_AMP = A0;
+ const int PIN_LED = 10;
  const int GANHO_AMP = 10 ;//10 - pois Ganho = r1-9100 + r2-1000 / r2-1000
  const int DELTA_T1 = 5000;
  unsigned long tRef1= 0; //valor de referencia para contagem dos 5 segundos
  
  void setup() {
    Serial.begin(9600);
+   pinMode( PIN_LED , OUTPUT);
  }
  
  void loop() {
@@ -57,4 +59,16 @@
      tRef1 = instanteAtual;
       
      }
+ 
+   if (temp >= 24.00){
+     
+     digitalWrite( PIN_LED , HIGH); 
+     delay(100);//dar tempo para acender o led
+     
+     }else{
+       
+       digitalWrite(PIN_LED, LOW);
+       delay(100);//dar tempo para apagar o led
+       
+       } 
    }
