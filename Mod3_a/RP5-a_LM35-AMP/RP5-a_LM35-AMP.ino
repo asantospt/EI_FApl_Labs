@@ -3,8 +3,8 @@
  * @brief - ler tempª pelo LM35 e usando um AMPOP
  * @date - 29/11; 06/12
  * @author - Afonso & Natanael
- * @state - TESTAR; Calcs. corretos, mas mostra valores errados
- *          INC
+ * @state - OK
+ *          
  */
 
 /** 
@@ -26,27 +26,37 @@
  * 8 -> +Vs/5V
  */
 
-const int PIN_AMP = A0;
-const int GANHO_AMP = 10;
-
-void setup() {
-  Serial.begin(9600);
-}
-
-void loop() {
-  float temp = 0.0;
-  float voltage = 0.0;
-  
-  int sensorValue = analogRead(PIN_AMP);
-
-  voltage = (5.0 / 1023) * sensorValue;
-
-  // MOSTRAR A TEMPª
-  temp = voltage * GANHO_AMP;
-  Serial.print("Temperatura: "); 
-  Serial.println(temp);
-  delay(1000);
-  
-  // MOSTRAR A TEMPª A CADA 5 SEGS.
-  // TODO: 
-}
+ const int PIN_AMP = A0;
+ const int GANHO_AMP = 10 ;//10 - pois Ganho = r1-9100 + r2-1000 / r2-1000
+ const int DELTA_T1 = 5000;
+ unsigned long tRef1= 0; //valor de referencia para contagem dos 5 segundos
+ 
+ void setup() {
+   Serial.begin(9600);
+ }
+ 
+ void loop() {
+   float temp = 0.0;
+   float voltage = 0.0;
+   float vLm35 = 0.00;
+   float instanteAtual = millis();
+   
+   int sensorValue = analogRead(PIN_AMP);
+ 
+   voltage = (5.0 / 1023) * sensorValue; //Com Ganho Operacional
+   
+   vLm35 = voltage / GANHO_AMP; //Sem Ganho Operacional
+   
+   temp = vLm35 / 0.01;
+ 
+   // MOSTRAR A TEMPª A CADA 5 SEGS.
+   if ( (instanteAtual - tRef1) >= DELTA_T1 ){
+     
+     Serial.print("Temperatura: "); 
+     Serial.println(temp);
+     tRef1 = instanteAtual;
+     Serial.print("Instante Actual: "); 
+     Serial.println(tRef1);
+      
+     }
+   }
