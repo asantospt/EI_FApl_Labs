@@ -10,20 +10,20 @@
 * LIGAÇÕES: -> Arduino 'Uno'
 * 5 V -> USB
 * GND -> breadboard
-* Pin 10 -> LCD/ CS      // Mega, 53 (SS)
-* Pin 11 -> LCD/ MOSI    // Mega- 51
-* Pin 12 -> LCD/ MISO    // Mega- 50
-* Pin 13 -> LCD/ SCK     // Mega- 52
-* Pin 0 -> LCD/ DC/RS    // Mega- 49
+* Pin 10 -> Res. 1 kOhm + (LCD/ CS) + Res. 4 kOhm      // Mega, 53 (SS)
+* Pin 11 -> Res. 1 kOhm + (LCD/ MOSI) + Res. 4 kOhm    // Mega- 51
+* Pin 12 -> LCD/ MISO                                  // Mega- 50
+* Pin 13 -> Res. 1 kOhm + (LCD/ SCK) + Res. 4 kOhm     // Mega- 52
+* Pin 0 -> Res. 1 kOhm + (LCD/ DC/RS) + Res. 4 kOhm    // Mega- 49
 * 
 * -> LCD TFT a cores
 * VCC -> 3.3 V
 * GND -> 0 V
-* CS -> Arduino/ Pin 10
-* DC/RS -> Arduino/ Pin 0
-* MOSI -> Arduino/ Pin 11
+* CS -> Res. 4 kOhm + (CS) + Res. 1 kOhm + Arduino/ Pin 10
+* DC/RS -> Res. 4 kOhm + (DC/RS) + Res. 1 kOhm + Arduino/ Pin 0
+* MOSI -> Res. 4 kOhm + (MOSI) + Res. 1 kOhm + Arduino/ Pin 11
 * MISO -> Arduino/ Pin 12
-* SCK -> Arduino/ Pin 13
+* SCK -> Res. 4 kOhm + (SCK) + Res. 1 kOhm + Arduino/ Pin 13
 * LED -> Res. 10 kOhm + VCC
 * RESET -> VCC
 */
