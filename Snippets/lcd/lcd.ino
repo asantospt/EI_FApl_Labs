@@ -1,31 +1,31 @@
 /* 
 * @file LCD.ino
 * @brief Imprimir tempª lida num LCD
-* @date 30/12
+* @date 31/12
 * @author afonso
 * @state TESTAR
 */
 
 /* 
-* LIGAÇÕES: -> Arduino 'Mega 2560'
-* 5V -> USB
+* LIGAÇÕES: -> Arduino 'Uno'
+* 5 V -> USB
 * GND -> breadboard
-* Pin 49 -> LCD/DC
-* Pin 50 -> LCD/MISO
-* Pin 51 -> LCD/MOSI
-* Pin 52 -> LCD/SCLK
-* Pin 53 -> LCD/CS
+* Pin 10 -> LCD/ CS      // Mega, 53 (SS)
+* Pin 11 -> LCD/ MOSI    // Mega- 51
+* Pin 12 -> LCD/ MISO    // Mega- 50
+* Pin 13 -> LCD/ SCK     // Mega- 52
+* Pin 0 -> LCD/ DC/RS    // Mega- 49
 * 
 * -> LCD TFT a cores
-* VCC -> 3.3V
-* GND -> 0V
-* CS -> Arduino/Pin 53
-* RESET -> 3.3V
-* DC -> Arduino/Pin 49
-* MOSI -> Arduino/Pin 51
-* SCLK -> Arduino/Pin 52
-* LED -> Res. 10 kOm + VCC
-* MISO -> Arduino/Pin 50
+* VCC -> 3.3 V
+* GND -> 0 V
+* CS -> Arduino/ Pin 10
+* DC/RS -> Arduino/ Pin 0
+* MOSI -> Arduino/ Pin 11
+* MISO -> Arduino/ Pin 12
+* SCK -> Arduino/ Pin 13
+* LED -> Res. 10 kOhm + VCC
+* RESET -> VCC
 */
 
 // Incluir as bibliotecas necessárias
@@ -34,8 +34,8 @@
 #include <SPI.h>              // protocolo de comunicação usado
 
 // Definir os terminais de DC e CS
-#define TFT_DC 49
-#define TFT_CS 53
+#define TFT_DC 0
+#define TFT_CS 10
 
 // Criar um objeto tft com indicacao dos terminais DC e CS
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
